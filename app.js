@@ -16,7 +16,7 @@ let clickUpgrades = [
     }
   ];
   
-  let automaticUpgrades = [
+  let autoUpgrades = [
     {
       name: 'lumberjack',
       price: 2000,
@@ -36,6 +36,15 @@ function logging() {
     const sharpAxe = clickUpgrades.find((clickUpgrade) => clickUpgrade.name == 'sharpAxe')
     const chainsaw = clickUpgrades.find((clickUpgrade) => clickUpgrade.name == 'chainsaw')
     wood += 1 + (sharpAxe.quantity * sharpAxe.multiplier) + (chainsaw.quantity * chainsaw.multiplier)
+    drawWoodCounter()
+}
+
+function autoLogging() {
+    // ✅ console.log('does this work', wood)
+    // autoLogging works automatically at a setInterval
+    const lumberjack = autoUpgrades.find((autoUpgrade) => autoUpgrade.name == 'lumberjack')
+    const loggingCamp = autoUpgrades.find((autoUpgrade) => autoUpgrade.name == 'loggingCamp')
+    wood += (lumberjack.quantity * lumberjack.multiplier) + (loggingCamp.quantity * loggingCamp.multiplier)
     drawWoodCounter()
 }
 
@@ -92,10 +101,38 @@ function drawChainsaw() {
     chainsawElem.innerText = chainsaw.price
 }
 
+function buyLumberjack() {
+    // ✅ find the sharpAxe in the array
+    const lumberjack = autoUpgrades.find((autoUpgrade) => autoUpgrade.name == 'lumberjack')
+    // ✅ Increase the quantity of the sharpAxe
+    // ✅ Only if the user has enough wood to make the purchase
+    if (wood >= lumberjack.price) {
+        lumberjack.quantity++
+        wood -= lumberjack.price
+        lumberjack.price += 1000
+    } else {
+        throw new Error('Unable to buy')
+    }
+    drawWoodCounter()
+    drawLumberjack()
+    // ✅ console.log('buying an axe', sharpAxe)
+}
+
+function drawLumberjack() {
+    const lumberjackElem = document.getElementById('purchaseLumberjack')
+    const lumberjack = autoUpgrades.find((autoUpgrade) => autoUpgrade.name == 'lumberjack')
+
+    lumberjackElem.innerText = lumberjack.price
+}
 
 
+
+//ANCHOR autoUpgrades at work
+setInterval(autoLogging, 2000)
 
 //ANCHOR drawing to page
 drawWoodCounter()
 drawSharpAxe()
 drawChainsaw()
+drawLumberjack()
+
