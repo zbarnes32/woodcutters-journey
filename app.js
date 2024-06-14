@@ -34,7 +34,8 @@ let clickUpgrades = [
 function logging() {
     // ✅ console.log('does this work', wood)
     const sharpAxe = clickUpgrades.find((clickUpgrade) => clickUpgrade.name == 'sharpAxe')
-    wood += 1 + (sharpAxe.quantity * sharpAxe.multiplier)
+    const chainsaw = clickUpgrades.find((clickUpgrade) => clickUpgrade.name == 'chainsaw')
+    wood += 1 + (sharpAxe.quantity * sharpAxe.multiplier) + (chainsaw.quantity * chainsaw.multiplier)
     drawWoodCounter()
 }
 
@@ -52,19 +53,43 @@ function buySharpAxe() {
     if (wood >= sharpAxe.price) {
         sharpAxe.quantity++
         wood -= sharpAxe.price
-        sharpAxe.price += 10
+        sharpAxe.price += 25
     } else {
         throw new Error('Unable to buy')
     }
     drawWoodCounter()
-    console.log('buying an axe', sharpAxe)
+    drawSharpAxe()
+    // ✅ console.log('buying an axe', sharpAxe)
 }
 
 function drawSharpAxe() {
+    const sharpAxeElem = document.getElementById('purchaseAxe')
     const sharpAxe = clickUpgrades.find((clickUpgrade) => clickUpgrade.name == 'sharpAxe')
 
-    const sharpAxeElem = document.getElementById('purchaseAxe')
     sharpAxeElem.innerText = sharpAxe.price
+}
+function buyChainsaw() {
+    // ✅ find the sharpAxe in the array
+    const chainsaw = clickUpgrades.find((clickUpgrade) => clickUpgrade.name == 'chainsaw')
+    // ✅ Increase the quantity of the sharpAxe
+    // ✅ Only if the user has enough wood to make the purchase
+    if (wood >= chainsaw.price) {
+        chainsaw.quantity++
+        wood -= chainsaw.price
+        chainsaw.price += 250
+    } else {
+        throw new Error('Unable to buy')
+    }
+    drawWoodCounter()
+    drawChainsaw()
+    // ✅ console.log('buying an axe', sharpAxe)
+}
+
+function drawChainsaw() {
+    const chainsawElem = document.getElementById('purchaseChainsaw')
+    const chainsaw = clickUpgrades.find((clickUpgrade) => clickUpgrade.name == 'chainsaw')
+
+    chainsawElem.innerText = chainsaw.price
 }
 
 
@@ -73,3 +98,4 @@ function drawSharpAxe() {
 //ANCHOR drawing to page
 drawWoodCounter()
 drawSharpAxe()
+drawChainsaw()
