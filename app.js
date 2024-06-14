@@ -4,7 +4,7 @@ let currentMultiplier = 0;
 let clickUpgrades = [
     {
       name: 'sharpAxe',
-      price: 100,
+      price: 50,
       quantity: 0,
       multiplier: 1
     }, 
@@ -33,7 +33,8 @@ let clickUpgrades = [
 
 function logging() {
     // ✅ console.log('does this work', wood)
-    wood += 1
+    const sharpAxe = clickUpgrades.find((clickUpgrade) => clickUpgrade.name == 'sharpAxe')
+    wood += 1 + (sharpAxe.quantity * sharpAxe.multiplier)
     drawWoodCounter()
 }
 
@@ -44,16 +45,26 @@ function drawWoodCounter() {
 }
 
 function buySharpAxe() {
-    // find the sharpAxe in the array
+    // ✅ find the sharpAxe in the array
     const sharpAxe = clickUpgrades.find((clickUpgrade) => clickUpgrade.name == 'sharpAxe')
-    // Increase the quantity of the sharpAxe
-    // Only if the user has enough wood to make the purchase
+    // ✅ Increase the quantity of the sharpAxe
+    // ✅ Only if the user has enough wood to make the purchase
     if (wood >= sharpAxe.price) {
         sharpAxe.quantity++
         wood -= sharpAxe.price
         sharpAxe.price += 10
+    } else {
+        throw new Error('Unable to buy')
     }
+    drawWoodCounter()
+    console.log('buying an axe', sharpAxe)
+}
 
+function drawSharpAxe() {
+    const sharpAxe = clickUpgrades.find((clickUpgrade) => clickUpgrade.name == 'sharpAxe')
+
+    const sharpAxeElem = document.getElementById('purchaseAxe')
+    sharpAxeElem.innerText = sharpAxe.price
 }
 
 
@@ -61,3 +72,4 @@ function buySharpAxe() {
 
 //ANCHOR drawing to page
 drawWoodCounter()
+drawSharpAxe()
