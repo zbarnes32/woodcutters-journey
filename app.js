@@ -125,7 +125,29 @@ function drawLumberjack() {
     lumberjackElem.innerText = lumberjack.price
 }
 
+function buyLoggingCamp() {
+    // ✅ find the sharpAxe in the array
+    const loggingCamp = autoUpgrades.find((autoUpgrade) => autoUpgrade.name == 'loggingCamp')
+    // ✅ Increase the quantity of the sharpAxe
+    // ✅ Only if the user has enough wood to make the purchase
+    if (wood >= loggingCamp.price) {
+        loggingCamp.quantity++
+        wood -= loggingCamp.price
+        loggingCamp.price += 10000
+    } else {
+        throw new Error('Unable to buy')
+    }
+    drawWoodCounter()
+    drawLoggingCamp()
+    // ✅ console.log('buying an axe', sharpAxe)
+}
 
+function drawLoggingCamp() {
+    const loggingCampElem = document.getElementById('purchaseLoggingCamp')
+    const loggingCamp = autoUpgrades.find((autoUpgrade) => autoUpgrade.name == 'loggingCamp')
+
+    loggingCampElem.innerText = loggingCamp.price
+}
 
 //ANCHOR autoUpgrades at work
 setInterval(autoLogging, 2000)
@@ -135,4 +157,5 @@ drawWoodCounter()
 drawSharpAxe()
 drawChainsaw()
 drawLumberjack()
+drawLoggingCamp()
 
