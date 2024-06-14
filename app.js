@@ -1,4 +1,5 @@
 let wood = 0;
+let currentMultiplier = 0;
 
 let clickUpgrades = [
     {
@@ -43,7 +44,16 @@ function drawWoodCounter() {
 }
 
 function buySharpAxe() {
-    
+    // find the sharpAxe in the array
+    const sharpAxe = clickUpgrades.find((clickUpgrade) => clickUpgrade.name == 'sharpAxe')
+    // Increase the quantity of the sharpAxe
+    // Only if the user has enough wood to make the purchase
+    if (wood >= sharpAxe.price) {
+        sharpAxe.quantity++
+        wood -= sharpAxe.price
+        sharpAxe.price += 10
+    }
+
 }
 
 
