@@ -2,6 +2,9 @@
     background-color: #032903;
     color: #e4cba9;
     font-size: 2em;
+    margin: 0;
+    padding: 0.5em;
+    width: 100%;
 }
 
 .tree-img {

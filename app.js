@@ -68,6 +68,7 @@ function buySharpAxe() {
     }
     drawWoodCounter()
     drawSharpAxe()
+    drawUpgradesPurchased()
     // ✅ console.log('buying an axe', sharpAxe)
 }
 
@@ -91,6 +92,7 @@ function buyChainsaw() {
     }
     drawWoodCounter()
     drawChainsaw()
+    drawUpgradesPurchased()
     // ✅ console.log('buying an axe', sharpAxe)
 }
 
@@ -115,6 +117,7 @@ function buyLumberjack() {
     }
     drawWoodCounter()
     drawLumberjack()
+    drawUpgradesPurchased()
     // ✅ console.log('buying an axe', sharpAxe)
 }
 
@@ -139,6 +142,7 @@ function buyLoggingCamp() {
     }
     drawWoodCounter()
     drawLoggingCamp()
+    drawUpgradesPurchased()
     // ✅ console.log('buying an axe', sharpAxe)
 }
 
@@ -149,8 +153,26 @@ function drawLoggingCamp() {
     loggingCampElem.innerText = loggingCamp.price
 }
 
+function drawUpgradesPurchased () {
+    const sharpAxeElem = document.getElementById('sharpAxes')
+    const chainsawElem = document.getElementById('chainsaws')
+    const lumberjackElem = document.getElementById('lumberjacks')
+    const loggingCampElem = document.getElementById('loggingCamps')
+
+    const sharpAxe = clickUpgrades.find((clickUpgrade) => clickUpgrade.name == 'sharpAxe')
+    const chainsaw = clickUpgrades.find((clickUpgrade) => clickUpgrade.name == 'chainsaw')
+    const lumberjack = autoUpgrades.find((autoUpgrade) => autoUpgrade.name == 'lumberjack')
+    const loggingCamp = autoUpgrades.find((autoUpgrade) => autoUpgrade.name == 'loggingCamp')
+
+    // Show the purchased upgrades to the user
+    sharpAxeElem.innerText = sharpAxe.quantity
+    chainsawElem.innerText = chainsaw.quantity
+    lumberjackElem.innerText = lumberjack.quantity
+    loggingCampElem.innerText = loggingCamp.quantity
+}
+
 //ANCHOR autoUpgrades at work
-setInterval(autoLogging, 2000)
+setInterval(autoLogging, 1000)
 
 //ANCHOR drawing to page
 drawWoodCounter()
@@ -158,4 +180,5 @@ drawSharpAxe()
 drawChainsaw()
 drawLumberjack()
 drawLoggingCamp()
+drawUpgradesPurchased()
 
