@@ -10,3 +10,22 @@
 .tree-img {
     height: 25em;
 }
+
+.stats-board {
+    background-color: #e4cba9;
+}
+
+.stats-board-position {
+    display: flex;
+    justify-content: space-between;
+}
+
+.stats {
+    font-size: 12px;
+}
+
+.upgrade-btns {
+    background-color: #032903;
+    color: #e4cba9;
+    padding: .25em;
+}

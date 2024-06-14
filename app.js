@@ -1,4 +1,4 @@
-let wood = 0;
+let wood = 10000;
 let currentMultiplier = 0;
 
 let clickUpgrades = [
@@ -51,6 +51,26 @@ function autoLogging() {
 function drawWoodCounter() {
     const woodCounterElem = document.getElementById('woodCount')
     woodCounterElem.innerText = wood
+    // console.log('does this show up on the page?', wood)
+}
+
+function drawWoodPerClick() {
+    const sharpAxe = clickUpgrades.find((clickUpgrade) => clickUpgrade.name == 'sharpAxe')
+    const chainsaw = clickUpgrades.find((clickUpgrade) => clickUpgrade.name == 'chainsaw')
+    let woodPerClick = 1 + (sharpAxe.quantity * sharpAxe.multiplier) + (chainsaw.quantity * chainsaw.multiplier)
+
+    const woodPerClickElem = document.getElementById('woodPerClick')
+    woodPerClickElem.innerText = woodPerClick
+   // ✅ console.log('does this show up on the page?', wood)
+}
+
+function drawWoodPerSecond() {
+    const lumberjack = autoUpgrades.find((autoUpgrade) => autoUpgrade.name == 'lumberjack')
+    const loggingCamp = autoUpgrades.find((autoUpgrade) => autoUpgrade.name == 'loggingCamp')
+    let woodPerSecond = (lumberjack.quantity * lumberjack.multiplier) + (loggingCamp.quantity * loggingCamp.multiplier)
+   
+    const woodPerSecondElem = document.getElementById('woodPerSecond')
+    woodPerSecondElem.innerText = woodPerSecond
    // ✅ console.log('does this show up on the page?', wood)
 }
 
@@ -69,6 +89,7 @@ function buySharpAxe() {
     drawWoodCounter()
     drawSharpAxe()
     drawUpgradesPurchased()
+    drawWoodPerClick()
     // ✅ console.log('buying an axe', sharpAxe)
 }
 
@@ -93,6 +114,7 @@ function buyChainsaw() {
     drawWoodCounter()
     drawChainsaw()
     drawUpgradesPurchased()
+    drawWoodPerClick()
     // ✅ console.log('buying an axe', sharpAxe)
 }
 
@@ -118,6 +140,7 @@ function buyLumberjack() {
     drawWoodCounter()
     drawLumberjack()
     drawUpgradesPurchased()
+    drawWoodPerSecond()
     // ✅ console.log('buying an axe', sharpAxe)
 }
 
@@ -143,6 +166,7 @@ function buyLoggingCamp() {
     drawWoodCounter()
     drawLoggingCamp()
     drawUpgradesPurchased()
+    drawWoodPerSecond()
     // ✅ console.log('buying an axe', sharpAxe)
 }
 
@@ -176,9 +200,12 @@ setInterval(autoLogging, 1000)
 
 //ANCHOR drawing to page
 drawWoodCounter()
+drawWoodPerClick()
+drawWoodPerSecond()
 drawSharpAxe()
 drawChainsaw()
 drawLumberjack()
 drawLoggingCamp()
 drawUpgradesPurchased()
+drawWoodPerSecond()
 

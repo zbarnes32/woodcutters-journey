@@ -16,25 +16,25 @@
     <header class="container-fluid">
         <div class="row">
             <div class="col-12 top-banner">
-                    <h1 class="text-center">Woodcutter's Journey</h1>
+                    <h1 class="text-center"><span class="px-3 mdi mdi-pine-tree-variant"></span>Woodcutter's Journey<span class="px-3 mdi mdi-pine-tree-variant"></span></h1>
             </div>
         </div>
     </header>
 
     <main>
-        <section class="container-fluid bg-warning fs-1 fw-bold">
+        <section class="container-fluid fs-1 fw-bold stats-board">
             <div class="row">
                 <div class="col-12">
-                    <div class="d-flex justify-content-space-evenly">
-                        <p><small>Wood/click</small></p>
+                    <div class="stats-board-position">
+                        <p><small class="stats"><span id="woodPerClick"></span><span class="mdi mdi-pine-tree-variant"></span>/click</small></p>
                         <p>Wood Count: <span id="woodCount">0</span></p>
-                        <p><small>Wood/second</small></p>
+                        <p><small class="stats"><span id="woodPerSecond"></span><span class="mdi mdi-pine-tree-variant"></span>/sec.</small></p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="container bg-success fs-1 text-center">
+        <section class="container fs-1 text-center stats-board">
             <div class="row justify-content-center">
                 <div class="col-10">
                     <p><span class="mdi mdi-axe p-5" id="sharpAxes">0</span><span class="mdi mdi-saw-blade p-5"
@@ -44,21 +44,25 @@
             </div>
         </section>
 
-        <section class="container bg-primary">
+        <section class="container stats-board">
             <div class="row">
                 <div class="col-10">
-                    <button onclick="buySharpAxe()">
-                        <p class="mdi mdi-axe">Purchase Sharp Axe: $<span id="purchaseAxe"></span></p>
+                    <button class="upgrade-btns rounded" onclick="buySharpAxe()">
+                        <h2 class="mdi mdi-axe"></h2>
+                        <p>Buy Sharp Axe: $<span id="purchaseAxe"></span></p>
                     </button>
-                    <button onclick="buyChainsaw()">
-                        <p class="mdi mdi-saw-blade">Purchase Chainsaw: $<span id="purchaseChainsaw"></span></p>
+                    <button class="upgrade-btns rounded" onclick="buyChainsaw()">
+                        <h2 class="mdi mdi-saw-blade"></h2>
+                        <p>Buy Chainsaw: $<span id="purchaseChainsaw"></span></p>
                     </button>
-                    <button onclick="buyLumberjack()">
-                        <p class="mdi mdi-account-plus-outline">Purchase Lumberjack: $<span
+                    <button class="upgrade-btns rounded" onclick="buyLumberjack()">
+                        <h2 class="mdi mdi-account-plus-outline"></h2>
+                        <p>Buy Lumberjack: $<span
                                 id="purchaseLumberjack"></span></p>
                     </button>
-                    <button onclick="buyLoggingCamp()">
-                        <p class="mdi mdi-tent">Purchase Logging Camp: $<span id="purchaseLoggingCamp"></span></p>
+                    <button class="upgrade-btns rounded" onclick="buyLoggingCamp()">
+                        <h2 class="mdi mdi-tent"></h2>
+                        <p>Buy Logging Camp: $<span id="purchaseLoggingCamp"></span></p>
                     </button>
                 </div>
             </div>
