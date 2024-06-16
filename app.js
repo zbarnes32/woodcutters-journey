@@ -78,7 +78,27 @@ function drawWoodPerSecond() {
    // ✅ console.log('does this show up on the page?', wood)
 }
 
-function drawSharpAxe() {
+//TODO Refactor Draw Buttons
+
+function drawClickUpgrades() {
+    clickUpgrades.forEach((clickUpgrade) => {
+        // console.log(`step 1`, clickUpgrade.name)
+        const clickUpgradeElem = document.getElementById(clickUpgrade.name)
+        // console.log(`step 2`, clickUpgradeElem)
+        clickUpgradeElem.innerText = `${clickUpgrade.price}`
+        // console.log(`did it work??`)
+    })
+}
+
+function drawAutoUpgrades () {
+    autoUpgrades.forEach((autoUpgrade) => {
+        const autoUpgradeElem = document.getElementById(autoUpgrade.name)
+        console.log(`Is it working?`, autoUpgradeElem)
+        autoUpgradeElem.innerText = `${autoUpgrade.price}`
+    })
+}
+
+/* function drawSharpAxe() {
     const sharpAxeElem = document.getElementById('purchaseAxe')
     const sharpAxe = clickUpgrades.find((clickUpgrade) => clickUpgrade.name == 'sharpAxe')
 
@@ -105,6 +125,7 @@ function drawLoggingCamp() {
 
     loggingCampElem.innerText = loggingCamp.price
 }
+*/ 
 
 function drawUpgradesPurchased () {
     const sharpAxeElem = document.getElementById('sharpAxes')
@@ -139,7 +160,8 @@ function buySharpAxe() {
         throw new Error('Unable to buy')
     }
     drawWoodCounter()
-    drawSharpAxe()
+    // refactored in drawClickUpgrades drawSharpAxe()
+    drawClickUpgrades()
     drawUpgradesPurchased()
     drawWoodPerClick()
     // ✅ console.log('buying an axe', sharpAxe)
@@ -158,7 +180,8 @@ function buyChainsaw() {
         throw new Error('Unable to buy')
     }
     drawWoodCounter()
-    drawChainsaw()
+    // refactored in drawClickUpgrades drawChainsaw()
+    drawClickUpgrades()
     drawUpgradesPurchased()
     drawWoodPerClick()
     // ✅ console.log('buying an axe', sharpAxe)
@@ -178,7 +201,8 @@ function buyLumberjack() {
         throw new Error('Unable to buy')
     }
     drawWoodCounter()
-    drawLumberjack()
+    // drawLumberjack()
+    drawAutoUpgrades()
     drawUpgradesPurchased()
     drawWoodPerSecond()
     // ✅ console.log('buying an axe', sharpAxe)
@@ -198,7 +222,8 @@ function buyLoggingCamp() {
         throw new Error('Unable to buy')
     }
     drawWoodCounter()
-    drawLoggingCamp()
+    // drawLoggingCamp()
+    drawAutoUpgrades()
     drawUpgradesPurchased()
     drawWoodPerSecond()
     // ✅ console.log('buying an axe', sharpAxe)
@@ -212,10 +237,12 @@ setInterval(autoLogging, 1000)
 drawWoodCounter()
 drawWoodPerClick()
 drawWoodPerSecond()
-drawSharpAxe()
+/* drawSharpAxe()
 drawChainsaw()
 drawLumberjack()
-drawLoggingCamp()
+drawLoggingCamp() */
+drawClickUpgrades()
+drawAutoUpgrades()
 drawUpgradesPurchased()
 drawWoodPerSecond()
 
