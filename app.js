@@ -93,12 +93,13 @@ function drawClickUpgrades() {
 function drawAutoUpgrades () {
     autoUpgrades.forEach((autoUpgrade) => {
         const autoUpgradeElem = document.getElementById(autoUpgrade.name)
-        console.log(`Is it working?`, autoUpgradeElem)
+        // console.log(`Is it working?`, autoUpgradeElem)
         autoUpgradeElem.innerText = `${autoUpgrade.price}`
     })
 }
 
-/* function drawSharpAxe() {
+/* refactored
+    function drawSharpAxe() {
     const sharpAxeElem = document.getElementById('purchaseAxe')
     const sharpAxe = clickUpgrades.find((clickUpgrade) => clickUpgrade.name == 'sharpAxe')
 
@@ -147,7 +148,46 @@ function drawUpgradesPurchased () {
 
 //ANCHOR Buying Functions
 
-function buySharpAxe() {
+function buyClickUpgrade(upgrade) {
+     const foundClickUpgrade = clickUpgrades.find((clickUpgrade) => clickUpgrade.name == upgrade)
+     // console.log(`Did it find it ${upgrade}`, foundClickUpgrade)
+     const foundClickUpgradePrice = foundClickUpgrade.price
+     // console.log('What about this?', foundClickUpgradePrice)
+       if (wood >= foundClickUpgradePrice) {
+         foundClickUpgrade.quantity++
+         wood -= foundClickUpgradePrice
+         foundClickUpgrade.price += 100
+       //  console.log(foundClickUpgrade)
+     } else {
+         window.alert("Unable to purchase at this time.")
+     }
+     drawWoodCounter()
+     drawClickUpgrades()
+     drawUpgradesPurchased()
+     drawWoodPerClick()
+}
+
+function buyAutoUpgrade(upgrade) {
+    const foundAutoUpgrade = autoUpgrades.find((autoUpgrade) => autoUpgrade.name == upgrade)
+    // console.log(`Did it find it ${upgrade}`, foundClickUpgrade)
+    const foundAutoUpgradePrice = foundAutoUpgrade.price
+    // console.log('What about this?', foundClickUpgradePrice)
+      if (wood >= foundAutoUpgradePrice) {
+        foundAutoUpgrade.quantity++
+        wood -= foundAutoUpgradePrice
+        foundAutoUpgrade.price += 2000
+      //  console.log(foundClickUpgrade)
+    } else {
+        window.alert("Unable to purchase at this time.")
+    }
+    drawWoodCounter()
+    drawAutoUpgrades()
+    drawUpgradesPurchased()
+    drawWoodPerSecond()
+}
+
+/* refactored 
+    function buySharpAxe() {
     // ✅ find the sharpAxe in the array
     const sharpAxe = clickUpgrades.find((clickUpgrade) => clickUpgrade.name == 'sharpAxe')
     // ✅ Increase the quantity of the sharpAxe
@@ -159,15 +199,17 @@ function buySharpAxe() {
     } else {
         throw new Error('Unable to buy')
     }
+
     drawWoodCounter()
     // refactored in drawClickUpgrades drawSharpAxe()
     drawClickUpgrades()
     drawUpgradesPurchased()
     drawWoodPerClick()
     // ✅ console.log('buying an axe', sharpAxe)
-}
+} */
 
-function buyChainsaw() {
+ /* refactored
+    function buyChainsaw() {
     // ✅ find the sharpAxe in the array
     const chainsaw = clickUpgrades.find((clickUpgrade) => clickUpgrade.name == 'chainsaw')
     // ✅ Increase the quantity of the sharpAxe
@@ -185,10 +227,11 @@ function buyChainsaw() {
     drawUpgradesPurchased()
     drawWoodPerClick()
     // ✅ console.log('buying an axe', sharpAxe)
-}
+} */
 
 
-function buyLumberjack() {
+/* refactored
+    function buyLumberjack() {
     // ✅ find the sharpAxe in the array
     const lumberjack = autoUpgrades.find((autoUpgrade) => autoUpgrade.name == 'lumberjack')
     // ✅ Increase the quantity of the sharpAxe
@@ -207,9 +250,10 @@ function buyLumberjack() {
     drawWoodPerSecond()
     // ✅ console.log('buying an axe', sharpAxe)
 }
+*/
 
-
-function buyLoggingCamp() {
+/* refactored 
+    function buyLoggingCamp() {
     // ✅ find the sharpAxe in the array
     const loggingCamp = autoUpgrades.find((autoUpgrade) => autoUpgrade.name == 'loggingCamp')
     // ✅ Increase the quantity of the sharpAxe
@@ -228,7 +272,7 @@ function buyLoggingCamp() {
     drawWoodPerSecond()
     // ✅ console.log('buying an axe', sharpAxe)
 }
-
+*/
 
 //ANCHOR autoUpgrades at work
 setInterval(autoLogging, 1000)
